@@ -9,9 +9,9 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "KAWOO — Custom Wooden Keychains from Your Photos" },
+      { title: "KAJOO ART — Custom Wooden Keychains from Your Photos" },
       { name: "description", content: "Premium personalized laser engraved wooden keychains, handmade in Vietnam. Perfect gifts for couples, families, and pet lovers." },
-      { property: "og:title", content: "KAWOO — Custom Wooden Keychains" },
+      { property: "og:title", content: "KAJOO ART — Custom Wooden Keychains" },
       { property: "og:description", content: "Turn your photos into handcrafted wooden keepsakes." },
     ],
     links: [{ rel: "canonical", href: "/" }],

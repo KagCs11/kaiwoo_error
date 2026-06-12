@@ -102,11 +102,11 @@ function CustomPage() {
 
       setImg(data.previewUrl);
 
-      toast.success("Ảnh đã được xử lý");
+      toast.success("Image processed successfully");
     } catch (err) {
       console.error(err);
 
-      toast.error("Không thể xử lý ảnh");
+      toast.error("Cannot process image");
     } finally {
       setLoading(false);
     }
@@ -129,11 +129,9 @@ function CustomPage() {
         </p>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
-
           {/* Preview */}
           <div className="lg:sticky lg:top-24 h-fit">
             <div className="aspect-square rounded-3xl wood-grain border border-border shadow-warm flex items-center justify-center overflow-hidden">
-
               {loading ? (
                 <div className="text-center text-muted-foreground">
                   <Loader2 className="h-8 w-8 mx-auto animate-spin text-walnut/50" />
@@ -181,14 +179,12 @@ function CustomPage() {
 
           {/* Options */}
           <div className="space-y-8">
-
             <label className="block">
               <span className="text-sm font-medium">
                 1. Upload your photo
               </span>
 
               <div className="mt-2 flex aspect-[3/2] cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-border bg-card hover:bg-secondary/50 transition relative overflow-hidden">
-
                 <input
                   type="file"
                   accept="image/*"
@@ -267,8 +263,10 @@ function CustomPage() {
                 <button
                   onClick={() => {
                     const item = buildItem();
+
                     add(item);
-                    toast.success("Đã thêm vào giỏ hàng");
+
+                    toast.success("Added to cart");
                   }}
                   className="rounded-full border border-border bg-card py-4 text-sm font-medium transition-all duration-200 hover:bg-secondary hover:-translate-y-0.5 active:scale-95"
                 >
@@ -278,16 +276,19 @@ function CustomPage() {
                 <button
                   onClick={() => {
                     const item = buildItem();
+
                     add(item);
-                    navigate({ to: "/checkout" });
+
+                    navigate({
+                      to: "/checkout",
+                    });
                   }}
-                  className="rounded-full bg-primary py-4 text-sm font-medium text-primary-foreground shadow-soft transition-all duration-200 hover:opacity-90 hover:shadow-warm hover:-translate-y-0.5 hover:scale-[1.02] active:scale-95"
+                  className="rounded-full bg-primary py-4 text-sm font-medium text-primary-foreground shadow-soft transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 active:scale-95"
                 >
-                  Mua ngay
+                  Buy Now
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </section>

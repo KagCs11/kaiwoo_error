@@ -5,8 +5,8 @@ import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — KAIWOO" },
-      { name: "description", content: "Get in touch with KAIWOO for custom orders, bulk pricing, and support." },
+      { title: "Contact — KAJOO ART" },
+      { name: "description", content: "Get in touch with KAJOO ART for custom orders, bulk pricing, and support." },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
   }),
