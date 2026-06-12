@@ -1,0 +1,125 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-walnut: var(--walnut);
+  --color-wood: var(--wood);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+
+  --shadow-soft: 0 10px 30px -12px color-mix(in oklab, var(--walnut) 30%, transparent);
+  --shadow-warm: 0 20px 60px -20px color-mix(in oklab, var(--walnut) 45%, transparent);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Wood palette */
+  --walnut: oklch(0.32 0.045 50);
+  --walnut-deep: oklch(0.22 0.035 45);
+  --wood: oklch(0.62 0.075 60);
+  --cream: oklch(0.965 0.018 80);
+  --cream-warm: oklch(0.94 0.025 78);
+  --gold: oklch(0.72 0.13 70);
+  --ink: oklch(0.18 0.02 50);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(0.99 0.008 80);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.99 0.008 80);
+  --popover-foreground: var(--ink);
+  --primary: var(--walnut);
+  --primary-foreground: var(--cream);
+  --secondary: var(--cream-warm);
+  --secondary-foreground: var(--walnut);
+  --muted: oklch(0.92 0.018 75);
+  --muted-foreground: oklch(0.45 0.025 55);
+  --accent: var(--gold);
+  --accent-foreground: var(--walnut-deep);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.88 0.022 70);
+  --input: oklch(0.88 0.022 70);
+  --ring: var(--wood);
+}
+
+.dark {
+  --background: oklch(0.16 0.018 45);
+  --foreground: var(--cream);
+  --card: oklch(0.22 0.025 48);
+  --card-foreground: var(--cream);
+  --popover: oklch(0.22 0.025 48);
+  --popover-foreground: var(--cream);
+  --primary: var(--cream);
+  --primary-foreground: var(--walnut-deep);
+  --secondary: oklch(0.28 0.03 50);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.28 0.03 50);
+  --muted-foreground: oklch(0.72 0.025 70);
+  --accent: var(--gold);
+  --accent-foreground: var(--walnut-deep);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .wood-grain {
+    background-image:
+      repeating-linear-gradient(90deg, color-mix(in oklab, var(--walnut) 4%, transparent) 0 1px, transparent 1px 6px),
+      linear-gradient(180deg, color-mix(in oklab, var(--wood) 15%, var(--cream)) 0%, var(--cream) 100%);
+  }
+  .ink-divider {
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--walnut) 40%, transparent), transparent);
+    height: 1px;
+  }
+}
