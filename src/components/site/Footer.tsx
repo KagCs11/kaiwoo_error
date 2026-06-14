@@ -8,7 +8,7 @@ export function Footer() {
         <div className="lg:col-span-1">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-walnut font-display text-lg font-semibold">K</span>
-            <span className="font-display text-xl font-semibold">KAJOO ART</span>
+            <span className="font-display text-xl font-semibold">KAIWOO</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-cream/70">
             Handcrafted laser-engraved wooden keychains from Vietnam — turning your memories into keepsakes.
@@ -38,8 +38,8 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold uppercase tracking-wider">Contact</h4>
           <ul className="mt-4 space-y-3 text-sm text-cream/70">
-            <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-accent" /><span>0900 000 000</span></li>
-            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-accent" /><span>hello@kajooart.vn</span></li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-accent" /><span>0919 653 641</span></li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-accent" /><span>kagcs11@gmail.com</span></li>
             <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-accent" /><span>Hồ Chí Minh, Việt Nam</span></li>
           </ul>
           <div className="mt-4 flex gap-3">
@@ -50,7 +50,7 @@ export function Footer() {
       </div>
       <div className="border-t border-cream/10">
         <div className="mx-auto max-w-7xl px-4 py-6 text-center text-xs text-cream/50 sm:px-6 lg:px-8">
-          © {new Date().getFullYear()} KAJOO ART. Handmade with love in Vietnam.
+          © {new Date().getFullYear()} KAIWOO. Handmade with love in Vietnam.
         </div>
       </div>
     </footer>
