@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
-import { useCart } from "@/lib/cart";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -15,13 +14,12 @@ const NAV = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { count } = useCart();
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg font-semibold">K</span>
-          <span className="font-display text-xl font-semibold tracking-tight">KAI<span className="text-accent">WOO</span></span>
+          <span className="font-display text-xl font-semibold tracking-tight">KAJOO <span className="text-accent">ART</span></span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">
@@ -45,14 +43,9 @@ export function Header() {
           >
             Create Yours
           </Link>
-          <Link to="/cart" aria-label="Cart" className="relative rounded-full p-2 hover:bg-muted">
+          <button aria-label="Cart" className="rounded-full p-2 hover:bg-muted">
             <ShoppingBag className="h-5 w-5" />
-            {count > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-accent px-1 text-[10px] font-semibold text-accent-foreground">
-                {count}
-              </span>
-            )}
-          </Link>
+          </button>
           <button
             aria-label="Menu"
             className="lg:hidden rounded-full p-2 hover:bg-muted"
