@@ -21,7 +21,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg font-semibold">K</span>
-          <span className="font-display text-xl font-semibold tracking-tight">KAI<span className="text-accent">WOO</span></span>
+          <span className="font-display text-xl font-semibold tracking-tight">KAJOO <span className="text-accent">ART</span></span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">
