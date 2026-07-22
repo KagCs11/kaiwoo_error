@@ -5,6 +5,8 @@ import { useCart } from "@/lib/cart";
 import { formatVND } from "@/lib/products";
 import { toast } from "sonner";
 
+import { API_URL } from "@/lib/api";
+
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
@@ -46,60 +48,105 @@ function CheckoutPage() {
   const update = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (items.length === 0) {
-      toast.error("Giỏ hàng đang trống");
-      return;
-    }
-    if (!form.fullName.trim() || !form.phone.trim() || !form.address.trim()) {
-      toast.error("Vui lòng điền họ tên, số điện thoại và địa chỉ");
-      return;
-    }
-    if (!/^[0-9+\s-]{8,15}$/.test(form.phone.trim())) {
-      toast.error("Số điện thoại không hợp lệ");
-      return;
+const onSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (items.length === 0) {
+    toast.error("Giỏ hàng đang trống");
+    return;
+  }
+
+  if (!form.fullName.trim() || !form.phone.trim() || !form.address.trim()) {
+    toast.error("Vui lòng điền họ tên, số điện thoại và địa chỉ");
+    return;
+  }
+
+  if (!/^[0-9+\s-]{8,15}$/.test(form.phone.trim())) {
+    toast.error("Số điện thoại không hợp lệ");
+    return;
+  }
+
+  setSubmitting(true);
+
+  const invoice = {
+    id: `KJ-${Date.now()}`,
+    createdAt: new Date().toISOString(),
+    customer: {
+      fullName: form.fullName.trim(),
+      phone: form.phone.trim(),
+      email: form.email.trim(),
+      address: form.address.trim(),
+      city: form.city.trim(),
+      note: form.note.trim(),
+    },
+    payment: form.payment,
+    items: items.map((i) => ({
+      id: i.id,
+      name: i.name,
+      price: i.price,
+      quantity: i.quantity,
+      subtotal: i.price * i.quantity,
+    })),
+    subtotal: total,
+    shipping: SHIPPING,
+    total: grandTotal,
+    currency: "VND",
+    status: "pending",
+  };
+
+  try {
+    const response = await fetch(
+      `${API_URL}/orders`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(invoice),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Không thể tạo đơn hàng");
     }
 
-    setSubmitting(true);
-    const invoice = {
-      id: `KJ-${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      customer: {
-        fullName: form.fullName.trim(),
-        phone: form.phone.trim(),
-        email: form.email.trim(),
-        address: form.address.trim(),
-        city: form.city.trim(),
-        note: form.note.trim(),
-      },
-      payment: form.payment,
-      items: items.map((i) => ({
-        id: i.id,
-        name: i.name,
-        price: i.price,
-        quantity: i.quantity,
-        subtotal: i.price * i.quantity,
-      })),
-      subtotal: total,
-      shipping: SHIPPING,
-      total: grandTotal,
-      currency: "VND",
-      status: "pending",
-    };
+    // Lưu invoice cuối cùng để trang invoice hiển thị
+    localStorage.setItem(
+      "kajoo_last_invoice",
+      JSON.stringify(invoice)
+    );
 
-    try {
-      const KEY = "kajoo_invoices_v1";
-      const prev = JSON.parse(localStorage.getItem(KEY) || "[]");
-      prev.push(invoice);
-      localStorage.setItem(KEY, JSON.stringify(prev));
-      localStorage.setItem("kajoo_last_invoice", JSON.stringify(invoice));
-    } catch {}
+    // Nếu muốn vẫn lưu lịch sử local
+    const KEY = "kajoo_invoices_v1";
+    const prev = JSON.parse(
+      localStorage.getItem(KEY) || "[]"
+    );
+
+    prev.push(invoice);
+
+    localStorage.setItem(
+      KEY,
+      JSON.stringify(prev)
+    );
 
     clear();
+
     toast.success("Đặt hàng thành công!");
-    navigate({ to: "/invoice" });
-  };
+
+    navigate({
+      to: "/invoice",
+    });
+
+  } catch (err) {
+    console.error(err);
+
+    toast.error(
+      "Không thể gửi đơn hàng tới máy chủ"
+    );
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   return (
     <SiteLayout>

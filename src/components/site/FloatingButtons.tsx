@@ -4,7 +4,7 @@ export function FloatingButtons() {
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
       <a
-        href="https://zalo.me/"
+        href="https://zalo.me/0919653641"
         target="_blank"
         rel="noreferrer"
         aria-label="Chat on Zalo"

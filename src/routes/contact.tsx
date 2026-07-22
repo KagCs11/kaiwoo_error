@@ -5,8 +5,8 @@ import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — KAJOO ART" },
-      { name: "description", content: "Get in touch with KAJOO ART for custom orders, bulk pricing, and support." },
+      { title: "Contact — KAIWOO" },
+      { name: "description", content: "Get in touch with KAIWOO for custom orders, bulk pricing, and support." },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
   }),
@@ -24,8 +24,8 @@ function ContactPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
           <form className="space-y-5 rounded-2xl border border-border bg-card p-6 sm:p-8" onSubmit={(e) => e.preventDefault()}>
             <Field label="Name"><input className="input" placeholder="Your name" /></Field>
-            <Field label="Email"><input type="email" className="input" placeholder="you@email.com" /></Field>
-            <Field label="Phone"><input className="input" placeholder="0900 000 000" /></Field>
+            <Field label="Email"><input type="email" className="input" placeholder="kaiwoo11@gmail.com" /></Field>
+            <Field label="Phone"><input className="input" placeholder="0919653641" /></Field>
             <Field label="Message"><textarea rows={5} className="input" placeholder="Tell us about your project…" /></Field>
             <button type="submit" className="w-full rounded-full bg-primary py-3.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition">
               Send Message
@@ -34,8 +34,8 @@ function ContactPage() {
           </form>
 
           <div className="space-y-6">
-            <Info icon={Phone} title="Phone" value="0900 000 000" />
-            <Info icon={Mail} title="Email" value="hello@kajooart.vn" />
+            <Info icon={Phone} title="Phone" value="0919653641" />
+            <Info icon={Mail} title="Email" value="kaiwoo11@gmail.com" />
             <Info icon={MessageCircle} title="Zalo / Messenger" value="Tap the floating button anytime" />
             <Info icon={MapPin} title="Studio" value="Quận 1, Hồ Chí Minh, Việt Nam" />
             <div className="rounded-2xl border border-border bg-secondary p-6">
